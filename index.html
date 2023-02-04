@@ -12,15 +12,15 @@
 </head>
 <body>
 	<div id="nescss">
-		<header :class="{ sticky: scrollPos > 50 }">
+		<header class="{ sticky: scrollPos > 50 }">
 			<div class="container">
 				<div class="nav-brand">
 					<a href="https://nandx.github.io">
 						<h1>
-							<i class="nes-logo brand-logo"></i>nandx.btc.us
+							<i class="nes-logo brand-logo"></i>nandx.github.io
 						</h1>
 					</a>
-					<p>me in 8bit</p>
+					<p>my personal name card</p>
 				</div>
 
 				<div class="social-buttons">
@@ -37,15 +37,28 @@
 
 		<div class="container">
 			<main class="main-content">
-
-
-				<!-- About -->
 				<section class="topic">
 					<h2 id="about">
 						<a href="#about">#</a>About me
 					</h2>
-					<p>a programmer, web developer, blockchain enthusiast</p>
+					<p>cut-copy-paste professional, blockchain enthusiast</p>
 				</section>
+
+				<div class="nes-container is-dark with-title">
+					<p class="title">What's Next ?</p>
+					<p>I'm still developing Bitcoin mini store using Lightning
+						Network.</p>
+				</div>
+
+				<p style="height: 50px;">
+				<div class="nes-container with-title">
+					<p class="title">Progress</p>
+					<p>Keep build the blocks !</p>
+					<progress class="nes-progress is-pattern" value="75" max="100"></progress>
+				</div>
+
+
+
 			</main>
 
 			<footer>
@@ -55,11 +68,7 @@
 						target="_blank" rel="noopener">nandx</a>
 				</p>
 			</footer>
-
-
 		</div>
 	</div>
 </body>
-
-
 </html>
