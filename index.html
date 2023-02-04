@@ -9,6 +9,8 @@
 <link href="https://unpkg.com/nes.css@latest/css/nes.min.css"
 	rel="stylesheet" />
 <link href="css/style.css" rel="stylesheet" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
 	<div id="nescss">
@@ -39,7 +41,7 @@
 			<main class="main-content">
 				<section class="topic">
 					<h2 id="about">
-						<a href="#about">#</a>About me
+						<a href="#about"><i class="nes-mario"></i></a>About me
 					</h2>
 					<p>cut-copy-paste professional, blockchain enthusiast</p>
 				</section>
@@ -49,16 +51,20 @@
 					<p>I'm still developing Bitcoin mini store using Lightning
 						Network.</p>
 				</div>
+				<p style="height: 35px;">
+				<div class="nes-container with-title">
+					<p class="title">Bitcoin Price</p>
+					<p>
+						$<label id="lbl_btcusdt"></label> / Rp<label id="lbl_btcidr"></label>
+					</p>
+				</div>
 
-				<p style="height: 50px;">
+				<p style="height: 35px;">
 				<div class="nes-container with-title">
 					<p class="title">Progress</p>
 					<p>Keep build the blocks !</p>
 					<progress class="nes-progress is-pattern" value="75" max="100"></progress>
 				</div>
-
-
-
 			</main>
 
 			<footer>
@@ -71,4 +77,26 @@
 		</div>
 	</div>
 </body>
+<script>
+	$(document).ready(function() {
+		$.ajaxSetup({
+			cache : false
+		});
+	});
+
+	function getpricebtc() {
+		$.getJSON("https://indodax.com/api/ticker/btcusdt", function(data1) {
+			var btcusdtprice = data1.ticker.last;
+			$("#lbl_btcusdt").text(Number(btcusdtprice).toLocaleString('en'));
+		});
+
+		$.getJSON("https://indodax.com/api/ticker/btcidr", function(data2) {
+			var btcidrprice = data2.ticker.last;
+			$("#lbl_btcidr").text(Number(btcidrprice).toLocaleString('id'));
+		});
+	};
+	
+	var intervalId = window.setInterval(getpricebtc, 10000);
+	getpricebtc();
+</script>
 </html>
