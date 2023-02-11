@@ -2,7 +2,7 @@
 <html lang="en" class="no-js">
 <head>
 <meta charset="ISO-8859-1">
-<title>nandx.btc</title>
+<title>nandx.github.io</title>
 <link href="https://fonts.googleapis.com/css?family=Press+Start+2P"
 	rel="stylesheet">
 <!-- latest -->
@@ -41,7 +41,7 @@
 			<main class="main-content">
 				<section class="topic">
 					<h2 id="about">
-						<a href="#about"><i class="nes-mario"></i></a>About me
+						<a href="#about"><i class="nes-mario"></i></a>About me ?
 					</h2>
 					<p>cut-copy-paste professional, blockchain enthusiast</p>
 				</section>
@@ -53,10 +53,14 @@
 				</div>
 				<p style="height: 35px;">
 				<div class="nes-container with-title">
-					<p class="title">Bitcoin Price</p>
+					<p class="title">Price Information</p>
 					<p>
-						$<label id="lbl_btcusdt"></label> / Rp<label id="lbl_btcidr"></label>
+						BTC price : <label id="lbl_btcusdt" class="nes-text"></label>
 					</p>
+					<p>
+						ETH price : <label id="lbl_ethusdt" class="nes-text"></label>
+					</p>
+
 				</div>
 
 				<p style="height: 35px;">
@@ -84,19 +88,21 @@
 		});
 	});
 
-	function getpricebtc() {
+	function getcurrentprice() {
 		$.getJSON("https://indodax.com/api/ticker/btcusdt", function(data1) {
 			var btcusdtprice = data1.ticker.last;
-			$("#lbl_btcusdt").text(Number(btcusdtprice).toLocaleString('en'));
+			$("#lbl_btcusdt").text(
+					"$" + Number(btcusdtprice).toLocaleString('en'));
 		});
 
-		$.getJSON("https://indodax.com/api/ticker/btcidr", function(data2) {
-			var btcidrprice = data2.ticker.last;
-			$("#lbl_btcidr").text(Number(btcidrprice).toLocaleString('id'));
+		$.getJSON("https://indodax.com/api/ticker/ethusdt", function(data2) {
+			var ethusdtprice = data2.ticker.last;
+			$("#lbl_ethusdt").text(
+					"$" + Number(ethusdtprice).toLocaleString('en'));
 		});
 	};
-	
-	var intervalId = window.setInterval(getpricebtc, 10000);
-	getpricebtc();
+
+	var intervalId = window.setInterval(getcurrentprice, 10000);
+	getcurrentprice();
 </script>
 </html>
