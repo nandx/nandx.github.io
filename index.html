@@ -2,13 +2,15 @@
 <html lang="en" class="no-js">
 <head>
 <meta charset="ISO-8859-1">
-<title>nandx.btc</title>
+<title>nandx.github.io</title>
 <link href="https://fonts.googleapis.com/css?family=Press+Start+2P"
 	rel="stylesheet">
 <!-- latest -->
 <link href="https://unpkg.com/nes.css@latest/css/nes.min.css"
 	rel="stylesheet" />
 <link href="css/style.css" rel="stylesheet" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
 	<div id="nescss">
@@ -39,7 +41,7 @@
 			<main class="main-content">
 				<section class="topic">
 					<h2 id="about">
-						<a href="#about">#</a>About me
+						<a href="#about"><i class="nes-mario"></i></a>About me ?
 					</h2>
 					<p>cut-copy-paste professional, blockchain enthusiast</p>
 				</section>
@@ -49,16 +51,24 @@
 					<p>I'm still developing Bitcoin mini store using Lightning
 						Network.</p>
 				</div>
+				<p style="height: 35px;">
+				<div class="nes-container with-title">
+					<p class="title">Price Information</p>
+					<p>
+						BTC price : <label id="lbl_btcusdt" class="nes-text"></label>
+					</p>
+					<p>
+						ETH price : <label id="lbl_ethusdt" class="nes-text"></label>
+					</p>
 
-				<p style="height: 50px;">
+				</div>
+
+				<p style="height: 35px;">
 				<div class="nes-container with-title">
 					<p class="title">Progress</p>
 					<p>Keep build the blocks !</p>
 					<progress class="nes-progress is-pattern" value="75" max="100"></progress>
 				</div>
-
-
-
 			</main>
 
 			<footer>
@@ -71,4 +81,28 @@
 		</div>
 	</div>
 </body>
+<script>
+	$(document).ready(function() {
+		$.ajaxSetup({
+			cache : false
+		});
+	});
+
+	function getcurrentprice() {
+		$.getJSON("https://indodax.com/api/ticker/btcusdt", function(data1) {
+			var btcusdtprice = data1.ticker.last;
+			$("#lbl_btcusdt").text(
+					"$" + Number(btcusdtprice).toLocaleString('en'));
+		});
+
+		$.getJSON("https://indodax.com/api/ticker/ethusdt", function(data2) {
+			var ethusdtprice = data2.ticker.last;
+			$("#lbl_ethusdt").text(
+					"$" + Number(ethusdtprice).toLocaleString('en'));
+		});
+	};
+
+	var intervalId = window.setInterval(getcurrentprice, 10000);
+	getcurrentprice();
+</script>
 </html>
